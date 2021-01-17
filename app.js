@@ -1,11 +1,16 @@
 const express = require("express");
 const app = express();
 const morgan = require("morgan");
+const bodyParser = require("body-parser");
 
 const favouriteRoutes = require("./api/routes/favourites");
 
 // used to log the route called
 app.use(morgan("dev"));
+
+// using body-parser
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser,json());
 
 app.use("/favourites", favouriteRoutes);
 
