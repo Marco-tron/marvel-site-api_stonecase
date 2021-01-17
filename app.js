@@ -8,6 +8,16 @@ const favouriteRoutes = require("./api/routes/favourites");
 // used to log the route called
 app.use(morgan("dev"));
 
+//handling CORS
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+    if (req.method === "OPTIONS") {
+        res.header("Acess-Control-Allow-Methods", "PUT, POST, PATCH, DELETE, GET")
+        return res.status(200).json({})
+    }
+    next();
+})
 // using body-parser
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser,json());
@@ -23,7 +33,7 @@ app.use(()=> {
 
 // handling other types of errors
 app.use((err, req, res, next) => {
-    res.status = err.status || 500;
+    res.status(err.status || 500);
     res.json({
         error:{
             message: error.message
