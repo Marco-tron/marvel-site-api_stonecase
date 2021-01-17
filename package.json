@@ -1,0 +1,29 @@
+{
+  "name": "marvel-site-api_stonecase",
+  "version": "1.0.0",
+  "description": "RESTfull API for login and saving favourites on the Marvel site",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Marco-tron/marvel-site-api_stonecase.git"
+  },
+  "keywords": [
+    "node",
+    "restful",
+    "login",
+    "favorite",
+    "api"
+  ],
+  "author": "Marco Aurelio Simoes Schmidt Junior",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Marco-tron/marvel-site-api_stonecase/issues"
+  },
+  "homepage": "https://github.com/Marco-tron/marvel-site-api_stonecase#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
