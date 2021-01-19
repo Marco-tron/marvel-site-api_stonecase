@@ -1,0 +1,1 @@
+those are migrations files used to create the tables necessary for the api to work
