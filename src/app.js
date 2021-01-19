@@ -20,7 +20,7 @@ app.use((req, res, next) => {
 })
 // using body-parser
 app.use(bodyParser.urlencoded({extended: false}));
-app.use(bodyParser,json());
+app.use(bodyParser.json());
 
 app.use("/favourites", favouriteRoutes);
 
