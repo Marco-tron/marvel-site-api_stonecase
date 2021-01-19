@@ -3,7 +3,7 @@ const app = express();
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
 
-const favouriteRoutes = require("./api/routes/favourites");
+const usersRoutes = require("./api/routes/users");
 
 // used to log the route called
 app.use(morgan("dev"));
@@ -22,7 +22,7 @@ app.use((req, res, next) => {
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
-app.use("/favourites", favouriteRoutes);
+app.use("/users", usersRoutes);
 
 // throw error if route does not exist
 app.use(()=> {
