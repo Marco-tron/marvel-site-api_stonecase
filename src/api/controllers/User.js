@@ -21,6 +21,14 @@ function noInput(tratative, text) {
 }
 
 exports.createUser = (req, res, next) => {
+    
+    if (!req.body.email || !req.body.password){
+        return res.status(412).json({
+            error:{
+                message: "Mail or password invalid"
+            }
+        });
+    }
     //tries to find a user with email trying to create
     User.findAll({where: { email: req.body.email }})
     .then(user => { 
@@ -110,7 +118,11 @@ exports.loginUser = (req, res, next) => {
                 // if sucesfull it sends back the token
                 return res.status(200).json({
                     message: "Auth successful",
-                    token: token
+                    token: token,
+                    user: {
+                        name: user[0].dataValues.name,
+                        email: user[0].dataValues.email
+                    }
                 });
             }
             // if not it fails authentication
