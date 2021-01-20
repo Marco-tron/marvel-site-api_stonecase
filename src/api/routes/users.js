@@ -1,17 +1,13 @@
 const express = require("express");
 const router = express.Router();
 
-const UserController = require('./controllers/UserController');
-const FavoriteController = require('./controllers/Favorite');
+const UserController = require('../controllers/User');
+const FavoriteController = require('../controllers/Favorite');
 
 // calling athentication middleware
-const checkAuth = require('../middleware/check-auth');
+const Auth = require('../middleware/auth');
 
-router.post("/signup", (req,res,next) => {
-    res.status(200).json({
-        message: "creating a new user"
-    });
-});
+router.post("/signup", UserController.createUser);
 
 router.post("/login", (req,res,next) => {
     res.status(200).json({
