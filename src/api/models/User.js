@@ -13,7 +13,7 @@ class User extends Model {
 
     // associating users with favorites
     static associate(models) {
-        this.hasMany(models.Favorite, { foreignKey: 'user_id', as: 'favorites' });
+        this.hasMany(models.Favorite, { foreignKey: 'user_id', as: 'Favorites' });
     }
 }
 

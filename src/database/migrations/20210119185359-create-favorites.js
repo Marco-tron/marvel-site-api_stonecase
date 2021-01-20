@@ -2,7 +2,7 @@
 
 module.exports = {
     up: (queryInterface, Sequelize) => {
-        return queryInterface.createTable('favorites', { 
+        return queryInterface.createTable('Favorites', { 
             id: {
                 type: Sequelize.INTEGER,
                 primaryKey: true,
@@ -12,7 +12,7 @@ module.exports = {
             user_id: {
                 type: Sequelize.INTEGER,
                 allowNull: false,
-                references: { model: 'users', key: 'id' },
+                references: { model: 'Users', key: 'id' },
                 onUpdate: 'CASCADE',
                 onDelete: 'CASCADE',
             },
@@ -24,11 +24,11 @@ module.exports = {
                 type: Sequelize.STRING,
                 allowNull: false,
             },
-            created_at: {
+            createdAt: {
                 type: Sequelize.DATE,
                 allowNull: false,
             },
-            updated_at: {
+            updatedAt: {
                 type: Sequelize.DATE,
                 allowNull: false,
             },
@@ -36,6 +36,6 @@ module.exports = {
     },
   
     down: (queryInterface, Sequelize) => {
-        return queryInterface.dropTable('favorites');
+        return queryInterface.dropTable('Favorites');
     }
 };
