@@ -156,7 +156,11 @@ exports.attData = (req, res, next) => {
             await user.save();
             return res.status(200).json({
                 message: "Update successful",
-                userUpdate: user
+                userUpdate: {
+                    name: user.name,
+                    email: user.email,
+                    id: user.id
+                }
             });
         })
         .catch(err => {
@@ -174,7 +178,8 @@ exports.attPassword = (req, res, next) => {
         .then( async user => {
             //comparing old passwords
             bcrypt.compare(req.body.oldPassword, user.password, async (err, result) => {
-                // if password is wrong you cant update it
+                // if there is an error you cant update it
+                
                 if (err) {
                     return res.status(401).json({
                         message: "Old password is incorrect"
@@ -191,8 +196,10 @@ exports.attPassword = (req, res, next) => {
                             });
                         // if hashing succeds it updates the password
                         } else {
+                            console.log("oi");
                             user.password = hash
                             await user.save();
+                            console.log(user);
                     
                             // if succesfull sends a success message
                             return res.status(200).json({
@@ -200,10 +207,13 @@ exports.attPassword = (req, res, next) => {
                             });
                         }
                     })
+                    // if the old password is wrong it returns an error
+                } else {
+                    return res.status(401).json({
+                        message: "Old password is incorrect"
+                    });
                 }
-                return res.status(401).json({
-                    message: "Old password is incorrect"
-                });
+                
             });
         })
         .catch(err => {
