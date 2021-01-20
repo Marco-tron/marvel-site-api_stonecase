@@ -17,7 +17,7 @@ module.exports = {
                 onDelete: 'CASCADE',
             },
             marvelid: {
-                type: Sequelize.STRING,
+                type: Sequelize.INTEGER,
                 allowNull: false,
             },
             category: {
