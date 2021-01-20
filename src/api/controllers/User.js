@@ -21,7 +21,7 @@ function noInput(tratative, text) {
 }
 
 exports.createUser = (req, res, next) => {
-    
+    // sees if the necessary árams in req.body exists
     if (!req.body.email || !req.body.password){
         return res.status(412).json({
             error:{
