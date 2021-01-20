@@ -16,22 +16,19 @@ router.put("/att", Auth, UserController.attData);
 // updating password
 router.put("/newPassword", Auth, UserController.attPassword );
 
+
+
+// needs auth route for creating a favorite
+router.post("/favorites", Auth, FavoriteController.createFav );
 // needs auth route for listing a users favorites
-router.get("/:user_id/favorites", (req,res,next) => {
+router.get("/favorites", (req,res,next) => {
     res.status(200).json({
         message: "getting user favorites"
     });
 });
 
 // needs auth route for creating a favorite
-router.post("/:user_id/favorites", (req,res,next) => {
-    res.status(200).json({
-        message: "creating user favorites"
-    });
-});
-
-// needs auth route for creating a favorite
-router.post("/:user_id/favorites/:marvelid", (req,res,next) => {
+router.delete("/favorites/:marvelid", (req,res,next) => {
     res.status(200).json({
         message: "deleting a favorite"
     });
