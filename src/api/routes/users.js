@@ -6,14 +6,11 @@ const FavoriteController = require('../controllers/Favorite');
 
 // calling athentication middleware
 const Auth = require('../middleware/auth');
-
+// SignUp route
 router.post("/signup", UserController.createUser);
+// Login route
+router.post("/login", UserController.loginUser);
 
-router.post("/login", (req,res,next) => {
-    res.status(200).json({
-        message: "logging a user"
-    });
-});
 // needs auth updating data
 router.put("/:user_id/att", (req,res,next) => {
     res.status(200).json({
