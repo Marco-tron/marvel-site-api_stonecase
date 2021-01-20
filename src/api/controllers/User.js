@@ -3,9 +3,16 @@ const jwt = require("jsonwebtoken");
 
 const User = require('../models/User');
 
+function PasswordCheck(password) {
+    if(password !== String) {
+        return password = password.toString();
+    } else{
+        return password;
+    }
+}
+
 exports.createUser = (req, res, next) => {
     //tries to find a user with email trying to create
-    console.log("bora encontrar")
     User.findAll({where: { email: req.body.email }})
     .then(user => { 
         // if there is one already it does not let you create an account
@@ -17,9 +24,8 @@ exports.createUser = (req, res, next) => {
         // if it cant find a user it then continues the logic
         } else {
             // if password isn a string it turns into one
-            if(typeof req.body.password !== String) {
-                req.body.password = req.body.password.toString();
-            }
+            req.body.password = PasswordCheck(req.body.password);
+
             // encripting password
             bcrypt.hash(req.body.password, 10, (err, hash) => {
                 // if hashing fails throw error
@@ -69,9 +75,7 @@ exports.loginUser = (req, res, next) => {
         // if it finds then it continues authentication
 
         // if password isn a string it turns into one
-        if(typeof req.body.password !== String) {
-            req.body.password = req.body.password.toString();
-        }
+        req.body.password = PasswordCheck(req.body.password);
 
         bcrypt.compare(req.body.password, user[0].password, (err, result) => {
             // if password is wrong auth fails
