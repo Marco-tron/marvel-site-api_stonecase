@@ -29,7 +29,7 @@ exports.createFav = async (req, res, next) => {
                             marvelid,
                             category
                         }).then(fav => {
-                            res.status(201).json({
+                            res.status(200).json({
                                 message: "Favorite created"
                             });
                         });
@@ -56,6 +56,24 @@ exports.getAllFavs = async (req, res, next) => {
             include: { association: 'Favorites' }
         });
         return res.status(412).json(user.Favorites);
+    // if not possible return the error
+    } catch (e) {
+        return res.status(e.status).json({message: e.message});
+    }
+    
+}
+
+exports.deleteFav = async (req, res, next) => {
+    //try getting favorites
+    try {
+        Favorite.findOne({where: { user_id: req.userData.userId, marvelid: req.params.marvelid }}).then(favorite => {
+            favorite.destroy()
+                .then(() => {
+                    res.status(200).json({
+                        message: "Favorite deleted"
+                    });
+                })
+        })
     // if not possible return the error
     } catch (e) {
         return res.status(e.status).json({message: e.message});
