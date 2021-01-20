@@ -55,7 +55,7 @@ exports.getAllFavs = async (req, res, next) => {
         const user = await User.findByPk(req.userData.userId, {
             include: { association: 'Favorites' }
         });
-        return res.status(412).json(user.Favorites);
+        return res.status(200).json(user.Favorites);
     // if not possible return the error
     } catch (e) {
         return res.status(e.status).json({message: e.message});
