@@ -24,7 +24,7 @@ router.post("/favorites", Auth, FavoriteController.createFav );
 router.get("/favorites", Auth, FavoriteController.getAllFavs );
 
 // needs auth route for creating a favorite
-router.delete("/favorites/:marvelid", Auth, FavoriteController.deleteFav);
+router.delete("/favorites/:category/:marvelid", Auth, FavoriteController.deleteFav);
 
 
 

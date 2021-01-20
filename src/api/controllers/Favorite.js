@@ -14,7 +14,7 @@ exports.createFav = async (req, res, next) => {
     if (user_id && marvelid && category) {
         try{
             // checks if it is already favorited
-            Favorite.findAll({where:{ marvelid: marvelid }})
+            Favorite.findAll({where:{ marvelid: marvelid, category: category }})
                 .then(favorites => {
                     // if it is throws error
                     if (favorites.length > 0) {
@@ -66,7 +66,7 @@ exports.getAllFavs = async (req, res, next) => {
 exports.deleteFav = async (req, res, next) => {
     //try getting favorites
     try {
-        Favorite.findOne({where: { user_id: req.userData.userId, marvelid: req.params.marvelid }}).then(favorite => {
+        Favorite.findOne({where: { user_id: req.userData.userId, marvelid: req.params.marvelid, category: req.params.category }}).then(favorite => {
             favorite.destroy()
                 .then(() => {
                     res.status(200).json({
