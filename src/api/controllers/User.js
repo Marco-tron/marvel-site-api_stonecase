@@ -41,7 +41,6 @@ exports.createUser = (req, res, next) => {
                     })
                     // success message
                     .then(result => {
-                        console.log("foii",result);
                         res.status(201).json({
                         message: "User created"
                         });
@@ -87,11 +86,12 @@ exports.loginUser = (req, res, next) => {
             // if its not then we create a token
             if (result) {
                 // creating token
+                console.log(user[0].name,"aqui")
                 const token = jwt.sign(
                     {
-                        name: user[0].name,
-                        email: user[0].email,
-                        userId: user[0]._id
+                        name: user[0].dataValues.name,
+                        email: user[0].dataValues.email,
+                        userId: user[0].dataValues.id
                     },
                     process.env.JWT_KEY,
                     {
