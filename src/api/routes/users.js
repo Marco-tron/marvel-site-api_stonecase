@@ -21,11 +21,7 @@ router.put("/newPassword", Auth, UserController.attPassword );
 // needs auth route for creating a favorite
 router.post("/favorites", Auth, FavoriteController.createFav );
 // needs auth route for listing a users favorites
-router.get("/favorites", (req,res,next) => {
-    res.status(200).json({
-        message: "getting user favorites"
-    });
-});
+router.get("/favorites", Auth, FavoriteController.getAllFavs );
 
 // needs auth route for creating a favorite
 router.delete("/favorites/:marvelid", (req,res,next) => {

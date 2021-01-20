@@ -1,5 +1,6 @@
 
 const Favorite = require('../models/Favorite');
+const User = require('../models/User');
 
 const findUserById = require('../middleware/findUserById');
 
@@ -46,4 +47,18 @@ exports.createFav = async (req, res, next) => {
             message: "missing data to save"
         });
     }
+}
+
+exports.getAllFavs = async (req, res, next) => {
+    //try getting favorites
+    try {
+        const user = await User.findByPk(req.userData.userId, {
+            include: { association: 'Favorites' }
+        });
+        return res.status(412).json(user.Favorites);
+    // if not possible return the error
+    } catch (e) {
+        return res.status(e.status).json({message: e.message});
+    }
+    
 }
