@@ -3,11 +3,20 @@ const jwt = require("jsonwebtoken");
 
 const User = require('../models/User');
 
+const findUserById = require('../middleware/findUserById');
+
 function PasswordCheck(password) {
     if(password !== String) {
         return password = password.toString();
     } else{
         return password;
+    }
+}
+function noInput(tratative, text) {
+    if(tratative) {
+        return res.status(412).json({
+            message: text
+        });
     }
 }
 
@@ -117,5 +126,79 @@ exports.loginUser = (req, res, next) => {
             error: err
         });
     });
+};
+
+exports.attData = (req, res, next) => {
+    noInput(!req.body.name && !req.body.email, "no input found");
+    //finding the right user
+    findUserById(req, res, next)
+        .then( async user => {
+            //updating the fields only if they are on the body
+            if(req.body.name) {
+                user.name = req.body.name
+            }
+            if(req.body.email) {
+                user.email = req.body.email
+            }
+            // saving new fields
+            await user.save();
+            return res.status(200).json({
+                message: "Update successful",
+                userUpdate: user
+            });
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({
+                error: err
+            });
+        });
+}
+
+exports.attPassword = (req, res, next) => {
+    noInput(!req.body.oldPassword || !req.body.password, "both old and new passwords are required");
+    //finding the right user
+    findUserById(req, res, next)
+        .then( async user => {
+            //comparing old passwords
+            bcrypt.compare(req.body.oldPassword, user.password, async (err, result) => {
+                // if password is wrong you cant update it
+                if (err) {
+                    return res.status(401).json({
+                        message: "Old password is incorrect"
+                    });
+                }
+                // if its not then we update it
+                if (result) {
+                    // saving new password
+                    bcrypt.hash(req.body.password, 10,async (err, hash) => {
+                        // if hashing fails throw error
+                        if (err) {
+                            return res.status(500).json({
+                            error: err
+                            });
+                        // if hashing succeds it updates the password
+                        } else {
+                            user.password = hash
+                            await user.save();
+                    
+                            // if succesfull sends a success message
+                            return res.status(200).json({
+                                message: "Password changed successfuly",
+                            });
+                        }
+                    })
+                }
+                return res.status(401).json({
+                    message: "Old password is incorrect"
+                });
+            });
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({
+                error: err
+            });
+        });
 }
 

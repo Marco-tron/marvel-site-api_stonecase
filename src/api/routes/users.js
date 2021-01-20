@@ -11,18 +11,11 @@ router.post("/signup", UserController.createUser);
 // Login route
 router.post("/login", UserController.loginUser);
 
-// needs auth updating data
-router.put("/:user_id/att", (req,res,next) => {
-    res.status(200).json({
-        message: "updating user data"
-    });
-});
-//needs auth updating password
-router.put("/:user_id/newPassword", (req,res,next) => {
-    res.status(200).json({
-        message: "updating user password"
-    });
-});
+// updating user data
+router.put("/att", Auth, UserController.attData);
+// updating password
+router.put("/newPassword", Auth, UserController.attPassword );
+
 // needs auth route for listing a users favorites
 router.get("/:user_id/favorites", (req,res,next) => {
     res.status(200).json({
