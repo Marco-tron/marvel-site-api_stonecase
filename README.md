@@ -1,16 +1,16 @@
 # marvel-site-api_stonecase
-Essa api  tem a finalidade de fornecer funçõede cadastro, login e salamento de favoritos para a aplicação contida no repositório marvel-site-api_stonecase.
+Essa api tem a finalidade de fornecer funções de cadastro, login e criação de favoritos para a aplicação contida no repositório marvel-site-api_stonecase.
 ## Tecnologias escolhidas
 ### express
 Framework comumente utilizado para aplicações em Node.js que traz diversas funções que auxiliam no desenvolvimento da aplicação
 ### Postgres
-Postgres é um sistema gerenciador de Bancos de dados relacionais. Ele foi escolhido simplesmente pela possibilidade da facil criação de um bano grátis na nuvem através do elephatsql facilitando assim o início do projeto.
+Postgres é um sistema gerenciador de Bancos de dados relacionais. Ele foi escolhido simplesmente pela possibilidade da fácil criação de um banco grátis na nuvem através do elephatsql facilitando assim o início do projeto.
 ### Sequelize
-Sequelize é uma ORM para bancos de dados relacionais. Ela possui diversas funcionalidades mas a principal razão de sua utilização aqui é pelo fato de facilitar imensamente a lidar com BD relacionais possbilitando a criação de models e simplifincando o uso de queries para se criar, encontrar e deletar itens das tabeas do BD.
+Sequelize é uma ORM para bancos de dados relacionais. Ela possui diversas funcionalidades mas a principal razão de sua utilização aqui é pelo fato de facilitar imensamente a lidar com BD relacionais possbilitando a criação de models e simplifincando o uso de queries para se criar, encontrar e deletar itens das tabelas do BD.
 ### sequelize-cli
-O sequelize-cli adiciona diversos comandos no terminal que possibilitam uma rápida e fácil criação e destruição de tabelas. Estas duasão são suas únicas funções mas foram o motivo de sua utilização
+O sequelize-cli adiciona diversos comandos no terminal que possibilitam uma rápida e fácil criação e destruição de tabelas. Estas duas não são suas únicas funções mas foram o motivo de sua utilização.
 ### jsonwebtoken bcrypt e body-parser
-Algumas dasout dependências do projeto. O body-parser está sendo utilizado aquuiara a leiturade arquivos json enviados nas requests, o bcrypt para a criptografa das senhas armazenadas no BD e o jsonwebtoken para permitir funcionalidades de login e assim proteger rotas que precisam de um usuário logado para funcionar.
+Algumas das outras dependências do projeto. O body-parser está sendo utilizado aqui para a leitura de arquivos json enviados nas requests, o bcrypt para a criptografa das senhas armazenadas no BD e o jsonwebtoken para permitir funcionalidades de login e assim proteger rotas que precisam de um usuário logado para funcionar.
 ## Antes de começar
  Depois de clonar o repositório, o primeiro passo para utilizar esta API é possuir acesso a um BD postgres, para isso você pode ter fácil acesso a um online e gratuitamente através de https://www.elephantsql.com/ se for de sua preferência também é possível criar um locamente em sua máquina mas não irei tratar disto aqui. 
 
