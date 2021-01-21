@@ -1,12 +1,12 @@
 # marvel-site-api_stonecase
-Essa api tem a finalidade de fornecer funções de cadastro, login e criação de favoritos para a aplicação contida no repositório marvel-site-api_stonecase.
+Essa api tem a finalidade de fornecer funções de cadastro, login e criação de favoritos para a aplicação contida no repositório "marvel-site-api_stonecase".
 ## Tecnologias escolhidas
 ### express
 Framework comumente utilizado para aplicações em Node.js que traz diversas funções que auxiliam no desenvolvimento da aplicação
 ### Postgres
 Postgres é um sistema gerenciador de Bancos de dados relacionais. Ele foi escolhido simplesmente pela possibilidade da fácil criação de um banco grátis na nuvem através do elephatsql facilitando assim o início do projeto.
 ### Sequelize
-Sequelize é uma ORM para bancos de dados relacionais. Ela possui diversas funcionalidades mas a principal razão de sua utilização aqui é pelo fato de facilitar imensamente a lidar com BD relacionais possbilitando a criação de models e simplifincando o uso de queries para se criar, encontrar e deletar itens das tabelas do BD.
+Sequelize é uma ORM para bancos de dados relacionais. Ela possui diversas funcionalidades mas a principal razão de sua utilização aqui é pelo fato de facilitar imensamente a lidar com BD(Banco de Dados) relacionais possbilitando a criação de models e simplifincando o uso de queries para se criar, encontrar e deletar itens das tabelas do BD.
 ### sequelize-cli
 O sequelize-cli adiciona diversos comandos no terminal que possibilitam uma rápida e fácil criação e destruição de tabelas. Estas duas não são suas únicas funções mas foram o motivo de sua utilização.
 ### jsonwebtoken bcrypt e body-parser
