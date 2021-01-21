@@ -7,11 +7,11 @@ const findUserById = require('../middleware/findUserById');
 
 exports.createFav = async (req, res, next) => {
     const user_id = req.userData.userId;
-    const { marvelid, category }= req.body;
+    const { marvelid, category, title, thumb }= req.body;
 
     // checks if all the params were received
     console.log(user_id , req.body , category)
-    if (user_id && marvelid && category) {
+    if (user_id && marvelid && category && title && thumb) {
         try{
             // checks if it is already favorited
             Favorite.findAll({where:{ marvelid: marvelid, category: category }})
@@ -27,7 +27,9 @@ exports.createFav = async (req, res, next) => {
                         Favorite.create({
                             user_id,
                             marvelid,
-                            category
+                            category,
+                            title,
+                            thumb
                         }).then(fav => {
                             res.status(200).json({
                                 message: "Favorite created"

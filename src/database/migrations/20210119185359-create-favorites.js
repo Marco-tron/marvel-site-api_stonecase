@@ -16,6 +16,14 @@ module.exports = {
                 onUpdate: 'CASCADE',
                 onDelete: 'CASCADE',
             },
+            title: {
+                type: Sequelize.STRING,
+                allowNull: false,
+            },
+            thumb: {
+                type: Sequelize.STRING,
+                allowNull: false,
+            },
             marvelid: {
                 type: Sequelize.INTEGER,
                 allowNull: false,

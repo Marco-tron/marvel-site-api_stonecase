@@ -3,6 +3,8 @@ const { Model, DataTypes } = require('sequelize');
 class Favorite extends Model {
     static init(sequelize) {
         super.init({
+            title: DataTypes.STRING,
+            thumb: DataTypes.STRING,
             marvelid: DataTypes.INTEGER,
             category: DataTypes.STRING,
         }, {
