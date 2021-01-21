@@ -34,7 +34,6 @@ exports.createUser = (req, res, next) => {
     .then(user => { 
         // if there is one already it does not let you create an account
         if (user.length > 0) {
-            console.log(user)
             return res.status(409).json({
                 message: "Mail exists"
             });
@@ -82,7 +81,6 @@ exports.loginUser = (req, res, next) => {
     User.findAll({where: { email: req.body.email }})
     .then(user => {
         // if there was no email found authentication fails
-        console.log(user);
         if (user.length < 1) {
             return res.status(401).json({
                 message: "Auth failed"
@@ -103,7 +101,6 @@ exports.loginUser = (req, res, next) => {
             // if its not then we create a token
             if (result) {
                 // creating token
-                console.log(user[0].name,"aqui")
                 const token = jwt.sign(
                     {
                         name: user[0].dataValues.name,
@@ -196,10 +193,8 @@ exports.attPassword = (req, res, next) => {
                             });
                         // if hashing succeds it updates the password
                         } else {
-                            console.log("oi");
                             user.password = hash
                             await user.save();
-                            console.log(user);
                     
                             // if succesfull sends a success message
                             return res.status(200).json({

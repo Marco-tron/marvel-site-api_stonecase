@@ -10,7 +10,6 @@ exports.createFav = async (req, res, next) => {
     const { marvelid, category, title, thumb }= req.body;
 
     // checks if all the params were received
-    console.log(user_id , req.body , category)
     if (user_id && marvelid && category && title && thumb) {
         try{
             // checks if it is already favorited
@@ -18,7 +17,6 @@ exports.createFav = async (req, res, next) => {
                 .then(favorites => {
                     // if it is throws error
                     if (favorites.length > 0) {
-                        console.log(favorites)
                         return res.status(409).json({
                             message: "Already favorited"
                         });
